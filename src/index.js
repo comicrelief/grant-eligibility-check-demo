@@ -13,9 +13,7 @@ const state = {
         }
       },
       cancelled: {},
-      // "choose-initiative": { on: { NEXT: "initative-chosen" } },
       "choose-initiative": { on: { NEXT: "choose-initiative" } },
-      "initative-chosen": {}
     }
   }
 };
@@ -75,12 +73,6 @@ const MachineApp = () => (
           </button>
         )}
       />
-      {/*<State
-        on="initiative-chosen"
-        render={props => (
-          <div>All about your init</div>
-        )}
-      />*/}
     </React.Fragment>
   </Machine>
 );
