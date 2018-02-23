@@ -8,12 +8,14 @@ const state = {
     initial: "start",
     states: {
       start: { on: {
-          NEXT: "end",
+          NEXT: "choose-initiative",
           CANCEL: "cancelled"
-        } 
-     },
-     cancelled: {},
-      end: { on: { NEXT: "start" } }
+        }
+      },
+      cancelled: {},
+      // "choose-initiative": { on: { NEXT: "initative-chosen" } },
+      "choose-initiative": { on: { NEXT: "choose-initiative" } },
+      "initative-chosen": {}
     }
   }
 };
@@ -48,18 +50,22 @@ const MachineApp = () => (
         )}
       />
       <State
-        on="end"
+        on="choose-initiative"
         render={props => (
-          <button
-            onClick={() =>
+          <div>
+            <select onChange={(changeEvent => {
               props.transition("NEXT", {
-                off: "end",
-                setState: { text: "Hello" }
+                setState: {
+                  initiative: changeEvent.target.value,
+                }
               })
-            }
-          >
-            {props.text}
-          </button>
+            })}>
+            <option value="Tech for Good">Tech for Good</option>
+            <option value="A.N. Other">A.N. Other</option>
+            </select>
+
+            <input value={props.initiative} />
+          </div>
         )}
       />
       <State
@@ -69,6 +75,12 @@ const MachineApp = () => (
           </button>
         )}
       />
+      {/*<State
+        on="initiative-chosen"
+        render={props => (
+          <div>All about your init</div>
+        )}
+      />*/}
     </React.Fragment>
   </Machine>
 );
