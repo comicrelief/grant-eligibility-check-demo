@@ -24,8 +24,8 @@ const state = {
       },
       charityNumber: {
         on: {
-          ENTERED: "globalEligibilityRules",
-          NONE: "sorry",
+          VALID: "globalEligibilityRules",
+          INVALID: "charityNumber",
         }
       },
       constitutionDoc: {
@@ -40,7 +40,11 @@ const state = {
           FAIL: "sorry"
         }
       },
-      "chooseInitiative": { on: { NEXT: "chooseInitiative" } },
+      "chooseInitiative": {
+        on: {
+          NEXT: "chooseInitiative"
+        }
+      },
       sorry: {},
     }
   }
@@ -102,13 +106,22 @@ const MachineApp = () => (
         render={props => (
           <div>
             <p>Please enter your registered UK charity number.</p>
-            <input />
-            <button onClick={() =>
-              props.transition("ENTERED", {off: "charityNumber"})
-            }>Proceed</button>
-            <button onClick={() =>
-              props.transition("NONE", {off: "charityNumber"})
-            }>I don't have one, cancel</button>
+            <input ref={(input) => { this.charityNumber = input; }}  />
+            <p>{props.error}</p>
+            <button
+              onClick={() => {
+                if (this.charityNumber.value.length) {
+                  // Any non-empty charity number is considered valid for this demo.
+                  props.transition("VALID", {off: "charityNumber"});
+                } else {
+                  props.transition("INVALID", {
+                    setState: {
+                      error: "Please enter a charity number!"
+                    }
+                  });
+                }
+              }}
+            >Proceed</button>
           </div>
         )}
       />
