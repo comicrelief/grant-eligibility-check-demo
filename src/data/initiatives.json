@@ -2,6 +2,7 @@
   "initiatives": [
     {
       "name": "Tech for Good",
+      "description": "Comic Relief understands the importance of digital technology and its potential to address some of our biggest social challenges. That’s why, in 2016, we launched our Tech for Good 2016-17 funding initiative, in partnership with Paul Hamlyn Foundation.",
       "project_funding_min": {
         "currency": "GBP",
         "amount": 1000
