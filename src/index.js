@@ -168,8 +168,8 @@ const MachineApp = () => (
             <Header />
             <SubHeader />
             <p>Please enter your registered UK charity number.</p>
-            <input ref={(input) => { this.charityNumber = input; }}  />
-            <p>{props.error}</p>
+            <input ref={(input) => { this.charityNumber = input; }}  type="text" style={{ marginBottom: '20px'}}/>
+            { props.error && <p>{props.error}</p>}
             <button
               onClick={() => {
                 if (this.charityNumber.value.length) {
@@ -184,7 +184,7 @@ const MachineApp = () => (
                 }
               }}
               className="btn btn--red"
-            >Proceed</button>
+            >This is my charity number</button>
           </main>
         )}
       />
@@ -199,50 +199,82 @@ const MachineApp = () => (
             <Header />
             <SubHeader />
             <p>Just a few quick questions about what you do.</p>
-
             <p>Does your organisation:</p>
             <ul>
               <li>Want to run a general appeal?</li>
               <li>Evangelise?</li>
               <li>Take a partisan political stance?</li>
             </ul>
-
-            <button onClick={() =>
-              props.transition("FAIL", {off: "globalEligibilityRules"})
-            }>Yes, one or more of these</button>
-            <button onClick={() =>
-              props.transition("PASS", {off: "globalEligibilityRules"})
-            }>No, none of these</button>
+            <div>
+              <button onClick={() =>
+                props.transition("FAIL", {off: "globalEligibilityRules"})
+              }
+              className="btn btn--red"
+              >
+                Yes, one or more of these
+              </button>
+              <button onClick={() =>
+                props.transition("PASS", {off: "globalEligibilityRules"})
+              }
+                className="btn btn--red"
+              >
+                No, none of these
+              </button>
+            </div>
           </main>
         )}
       />
       <State
         on="faithBased"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>Is yours a faith-based organisation?</p>
-            <button onClick={() =>
-              props.transition("YES", {off: "faithBased"})
-            }>Yes</button>
-            <button onClick={() =>
-              props.transition("NO", {off: "faithBased"})
-            }>No</button>
-          </div>
+            <div>
+              <button onClick={() =>
+                props.transition("YES", {off: "faithBased"})
+              }
+              className="btn btn--red"
+              >Yes</button>
+              <button onClick={() =>
+                props.transition("NO", {off: "faithBased"})
+              }
+              className="btn btn--red"
+              >No</button>
+            </div>
+          </main>
         )}
       />
       <State
         on="diversityPolicy"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>That's cool, but we need to see your diversity policy to check everyone's included.</p>
             <p>Got one?</p>
-            <button onClick={() =>
-              props.transition("YES", {off: "diversityPolicy"})
-            }>Yes</button>
-            <button onClick={() =>
-              props.transition("NO", {off: "diversityPolicy"})
-            }>No</button>
-          </div>
+            <div>
+              <button onClick={() =>
+                props.transition("YES", {off: "diversityPolicy"})
+              }
+              className="btn btn--red"
+              >Yes</button>
+              <button onClick={() =>
+                props.transition("NO", {off: "diversityPolicy"})
+              }
+              className="btn btn--red"
+              >No</button>
+            </div>
+          </main>
         )}
       />
       <State
