@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../logo.svg';
 
 const Header = (props) => (
     <React.Fragment>
@@ -23,3 +24,5 @@ const Header = (props) => (
         </header>
     </React.Fragment>
 )
+
+export default Header;
