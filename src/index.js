@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Machine, State } from "react-gizmo";
 
+import InitiativeInfo from "./component/InitiativeInfo";
+import { loadInitiative } from "./util/initiative";
+
 const state = {
   initialState: { text: "Hello" },
   flow: {
@@ -25,7 +28,7 @@ const MachineApp = () => (
         on="start"
         render={props => (
           <div>
-              <button
+          <button
             onClick={() =>
               props.transition("NEXT", {
                 off: "start",
@@ -36,41 +39,46 @@ const MachineApp = () => (
             {props.text}
           </button>
           <button
-          onClick={() =>
-            props.transition("CANCEL", {
-              off: "start"
-            })
-          }
-        >
-          cancel
-        </button>
+            onClick={() =>
+              props.transition("CANCEL", {
+                off: "start"
+              })
+            }
+          >
+            cancel
+          </button>
         </div>
         )}
       />
       <State
         on="choose-initiative"
         render={props => (
-          <div>
-            <select onChange={(changeEvent => {
-              props.transition("NEXT", {
-                setState: {
-                  initiative: changeEvent.target.value,
-                }
-              })
-            })}>
-            <option value="Tech for Good">Tech for Good</option>
-            <option value="A.N. Other">A.N. Other</option>
+          <React.Fragment>
+            <select
+              defaultValue="-1"
+              onChange={changeEvent => {
+                props.transition("NEXT", {
+                  setState: {
+                    initiativeName: changeEvent.target.value,
+                  }
+                })
+              }}
+            >
+              <option value="-1">Please choose a programme...</option>
+              <option value="Tech for Good">Tech for Good</option>
+              <option value="A.N. Other Initiative">A.N. Other Initiative</option>
             </select>
 
-            <input value={props.initiative} />
-          </div>
+            <InitiativeInfo
+              initiative={loadInitiative(props.initiativeName)}
+            />
+          </React.Fragment>
         )}
       />
       <State
         on="cancelled"
         render={props => (
-          <button>cancelled :(
-          </button>
+          <button>cancelled :(</button>
         )}
       />
     </React.Fragment>
