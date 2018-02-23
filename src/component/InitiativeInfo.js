@@ -39,6 +39,12 @@ export default class InitiativeInfo extends Component {
           </ul>
         </p>
         <h3>
+          Total applications for {initiative.name} initiative
+        </h3>
+        <p>
+          {initiative.past_acceptances[0].total_applications}
+        </p>
+        <h3>
           Success rate for last year
         </h3>
         <p>

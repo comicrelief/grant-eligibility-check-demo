@@ -4,6 +4,9 @@ import { Machine, State } from "react-gizmo";
 import logo from './logo.svg';
 
 import FinalState from './FinalState';
+import Header from "./component/Header";
+import SubHeader from "./component/SubHeader";
+import MainWrapper from "./component/MainWrapper";
 
 const state = {
   initialState: {},
@@ -52,70 +55,130 @@ const MachineApp = () => (
       <State
         on="chooseCountry"
         render={props => (
-          <div>
-            <p>Is your organisation based in the UK, or outside?</p>
-            <button
-              onClick={() =>
-                props.transition("IN", {off: "chooseCountry"})
-              }
-            >Inside</button>
-            <button
-              onClick={() =>
-                props.transition("OUT", {off: "chooseCountry"})
-              }
-            >Outside</button>
-          </div>
+          <React.Fragment>
+            <main style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+              <Header />
+              <SubHeader />
+              <p>Is your organisation based in the UK, or outside?</p>
+              <div>
+                <button
+                  onClick={() =>
+                    props.transition("IN", {off: "chooseCountry"})
+                  }
+                  className="btn btn--red"
+                >Inside</button>
+                <button
+                  onClick={() =>
+                    props.transition("OUT", {off: "chooseCountry"})
+                  }
+                  className="btn btn--red"
+                >Outside
+                </button>
+              </div>
+            </main>
+          </React.Fragment>
         )}
       />
       <State
         on="charityOrNot"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>Are you a registered UK charity?</p>
-            <button onClick={() =>
-              props.transition("YES", {off: "charityOrNot"})
-            }>Yes</button>
-            <button onClick={() =>
-              props.transition("NO", {off: "charityOrNot"})
-            }>No</button>
-          </div>
+            <div>
+              <button
+                onClick={() =>
+                  props.transition("YES", {off: "charityOrNot"})
+                }
+                className="btn btn--red"
+              >
+                Yes
+              </button>
+              <button 
+                onClick={() =>
+                  props.transition("NO", {off: "charityOrNot"})
+                }
+                className="btn btn--red"
+              >No</button>
+            </div>
+          </main>
         )}
       />
       <State
         on="constitutionDoc"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>That's OK, my mum's not a charity either. You do need a&nbsp;
               <a href="https://example.com">consitution doc</a> for us to proceed though.</p>
             <p>Do you have one?</p>
-            <button onClick={() =>
-              props.transition("YES", {off: "constitutionDoc"})
-            }>Yes</button>
-            <button onClick={() =>
-              props.transition("NO", {off: "constitutionDoc"})
-            }>No</button>
-          </div>
+            <div>
+              <button onClick={() =>
+                props.transition("YES", {off: "constitutionDoc"})
+              }>Yes</button>
+              <button onClick={() =>
+                props.transition("NO", {off: "constitutionDoc"})
+              }>No</button>
+            </div>
+          </main>
         )}
       />
       <State
         on="charityNumber"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>Please enter your registered UK charity number.</p>
-            <input />
-            <button onClick={() =>
-              props.transition("ENTERED", {off: "charityNumber"})
-            }>Proceed</button>
-            <button onClick={() =>
-              props.transition("NONE", {off: "charityNumber"})
-            }>I don't have one, cancel</button>
-          </div>
+            <div className="form-field">
+              <input type="text"
+                style={{
+                  marginBottom: '20px'
+                }}
+              />
+            </div>
+            <div>
+              <button onClick={() =>
+                props.transition("ENTERED", {off: "charityNumber"})
+              }
+              className="btn btn--red">That's my charity number</button>
+              <button onClick={() =>
+                props.transition("NONE", {off: "charityNumber"})
+              }
+              className="btn btn--red"
+              >I don't have one</button>
+            </div>
+          </main>
         )}
       />
       <State
         on="globalEligibilityRules"
         render={props => (
-          <div>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
             <p>Just a few quick questions about what you do.</p>
 
             <p>Does your organisation:</p>
@@ -131,7 +194,7 @@ const MachineApp = () => (
             <button onClick={() =>
               props.transition("PASS", {off: "globalEligibilityRules"})
             }>No, none of these</button>
-          </div>
+          </main>
         )}
       />
       <State

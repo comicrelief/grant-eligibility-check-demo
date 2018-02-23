@@ -5,9 +5,6 @@ const NotMachine = () => (
             flexDirection: 'column',
             alignItems: 'center',
         }}>
-        <h1 className="text-align-center">
-            Apply for grant
-        </h1>
         <p className="text-align-center font--xlarge">
             Are you a UK based?
         </p>

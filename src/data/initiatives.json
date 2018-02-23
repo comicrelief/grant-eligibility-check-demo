@@ -38,7 +38,8 @@
         {
           "year": 2017,
           "accepted_percent": 18.0,
-          "accepted_number": 22
+          "accepted_number": 22,
+          "total_applications": 1200
         }
       ]
     },
@@ -74,7 +75,8 @@
         {
           "year": 2017,
           "accepted_percent": 1.1,
-          "accepted_number": 6
+          "accepted_number": 6,
+          "total_applications": 1200
         }
       ]
     }
