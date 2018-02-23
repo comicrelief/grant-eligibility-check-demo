@@ -16,34 +16,50 @@ const state = {
       chooseCountry: {
         on: {
           IN: "charityOrNot",
-          OUT: "globalEligibilityRules"
+          OUT: "globalEligibilityRules",
         }
       },
       charityOrNot: {
         on: {
           YES: "charityNumber",
-          NO: "constitutionDoc"
+          NO: "constitutionDoc",
         }
       },
       charityNumber: {
         on: {
-          ENTERED: "globalEligibilityRules",
-          NONE: "sorry",
+          VALID: "globalEligibilityRules",
+          INVALID: "charityNumber",
         }
       },
       constitutionDoc: {
         on: {
           YES: "globalEligibilityRules",
-          NO: "sorry"
+          NO: "sorry",
         }
       },
       globalEligibilityRules: {
         on: {
-          PASS: "choose-initiative",
-          FAIL: "sorry"
+          PASS: "faithBased",
+          FAIL: "sorry",
         }
       },
-      "choose-initiative": { on: { NEXT: "choose-initiative" } },
+      faithBased: {
+        on: {
+          YES: "diversityPolicy",
+          NO: "chooseInitiative",
+        }
+      },
+      diversityPolicy: {
+        on: {
+          YES: "chooseInitiative",
+          NO: "sorry",
+        }
+      },
+      chooseInitiative: {
+        on: {
+          NEXT: "chooseInitiative",
+        }
+      },
       sorry: {},
     }
   }
@@ -148,25 +164,23 @@ const MachineApp = () => (
             <Header />
             <SubHeader />
             <p>Please enter your registered UK charity number.</p>
-            <div className="form-field">
-              <input type="text"
-                style={{
-                  marginBottom: '20px'
-                }}
-              />
-            </div>
-            <div>
-              <button onClick={() =>
-                props.transition("ENTERED", {off: "charityNumber"})
-              }
-              className="btn btn--red">That's my charity number</button>
-              <button onClick={() =>
-                props.transition("NONE", {off: "charityNumber"})
-              }
-              className="btn btn--red"
-              >I don't have one</button>
-            </div>
-          </main>
+            <input ref={(input) => { this.charityNumber = input; }}  />
+            <p>{props.error}</p>
+            <button
+              onClick={() => {
+                if (this.charityNumber.value.length) {
+                  // Any non-empty charity number is considered valid for this demo.
+                  props.transition("VALID", {off: "charityNumber"});
+                } else {
+                  props.transition("INVALID", {
+                    setState: {
+                      error: "Please enter a charity number!"
+                    }
+                  });
+                }
+              }}
+            >Proceed</button>
+          </div>
         )}
       />
       <State
@@ -195,6 +209,35 @@ const MachineApp = () => (
               props.transition("PASS", {off: "globalEligibilityRules"})
             }>No, none of these</button>
           </main>
+        )}
+      />
+      <State
+        on="faithBased"
+        render={props => (
+          <div>
+            <p>Is yours a faith-based organisation?</p>
+            <button onClick={() =>
+              props.transition("YES", {off: "faithBased"})
+            }>Yes</button>
+            <button onClick={() =>
+              props.transition("NO", {off: "faithBased"})
+            }>No</button>
+          </div>
+        )}
+      />
+      <State
+        on="diversityPolicy"
+        render={props => (
+          <div>
+            <p>That's cool, but we need to see your diversity policy to check everyone's included.</p>
+            <p>Got one?</p>
+            <button onClick={() =>
+              props.transition("YES", {off: "diversityPolicy"})
+            }>Yes</button>
+            <button onClick={() =>
+              props.transition("NO", {off: "diversityPolicy"})
+            }>No</button>
+          </div>
         )}
       />
       <State
