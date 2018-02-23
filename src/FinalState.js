@@ -9,7 +9,7 @@ import Header from './component/Header';
 const FinalState = () => (
     <React.Fragment>
         <State
-            on="choose-initiative"
+            on="chooseInitiative"
             render={props => (
             <React.Fragment>
                 <Header />

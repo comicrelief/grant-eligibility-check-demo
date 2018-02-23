@@ -36,11 +36,11 @@ const state = {
       },
       globalEligibilityRules: {
         on: {
-          PASS: "choose-initiative",
+          PASS: "chooseInitiative",
           FAIL: "sorry"
         }
       },
-      "choose-initiative": { on: { NEXT: "choose-initiative" } },
+      "chooseInitiative": { on: { NEXT: "chooseInitiative" } },
       sorry: {},
     }
   }
