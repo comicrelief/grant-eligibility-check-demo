@@ -145,10 +145,14 @@ const MachineApp = () => (
             <div>
               <button onClick={() =>
                 props.transition("YES", {off: "constitutionDoc"})
-              }>Yes</button>
+              }
+              className="btn btn--red"
+              >Yes</button>
               <button onClick={() =>
                 props.transition("NO", {off: "constitutionDoc"})
-              }>No</button>
+              }
+              className="btn btn--red"
+              >No</button>
             </div>
           </main>
         )}
@@ -179,6 +183,7 @@ const MachineApp = () => (
                   });
                 }
               }}
+              className="btn btn--red"
             >Proceed</button>
           </main>
         )}
