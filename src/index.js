@@ -8,62 +8,7 @@ import Header from "./component/Header";
 import SubHeader from "./component/SubHeader";
 import MainWrapper from "./component/MainWrapper";
 
-const state = {
-  initialState: {},
-  flow: {
-    initial: "chooseCountry",
-    states: {
-      chooseCountry: {
-        on: {
-          IN: "charityOrNot",
-          OUT: "globalEligibilityRules",
-        }
-      },
-      charityOrNot: {
-        on: {
-          YES: "charityNumber",
-          NO: "constitutionDoc",
-        }
-      },
-      charityNumber: {
-        on: {
-          VALID: "globalEligibilityRules",
-          INVALID: "charityNumber",
-        }
-      },
-      constitutionDoc: {
-        on: {
-          YES: "globalEligibilityRules",
-          NO: "sorry",
-        }
-      },
-      globalEligibilityRules: {
-        on: {
-          PASS: "faithBased",
-          FAIL: "sorry",
-        }
-      },
-      faithBased: {
-        on: {
-          YES: "diversityPolicy",
-          NO: "chooseInitiative",
-        }
-      },
-      diversityPolicy: {
-        on: {
-          YES: "chooseInitiative",
-          NO: "sorry",
-        }
-      },
-      chooseInitiative: {
-        on: {
-          NEXT: "chooseInitiative",
-        }
-      },
-      sorry: {},
-    }
-  }
-};
+import state from './data/state.json';
 
 const MachineApp = () => (
   <Machine log state={state}>
