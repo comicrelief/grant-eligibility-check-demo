@@ -13,13 +13,13 @@ const state = {
       chooseCountry: {
         on: {
           IN: "charityOrNot",
-          OUT: "globalEligibilityRules"
+          OUT: "globalEligibilityRules",
         }
       },
       charityOrNot: {
         on: {
           YES: "charityNumber",
-          NO: "constitutionDoc"
+          NO: "constitutionDoc",
         }
       },
       charityNumber: {
@@ -31,18 +31,30 @@ const state = {
       constitutionDoc: {
         on: {
           YES: "globalEligibilityRules",
-          NO: "sorry"
+          NO: "sorry",
         }
       },
       globalEligibilityRules: {
         on: {
-          PASS: "chooseInitiative",
-          FAIL: "sorry"
+          PASS: "faithBased",
+          FAIL: "sorry",
         }
       },
-      "chooseInitiative": {
+      faithBased: {
         on: {
-          NEXT: "chooseInitiative"
+          YES: "diversityPolicy",
+          NO: "chooseInitiative",
+        }
+      },
+      diversityPolicy: {
+        on: {
+          YES: "chooseInitiative",
+          NO: "sorry",
+        }
+      },
+      chooseInitiative: {
+        on: {
+          NEXT: "chooseInitiative",
         }
       },
       sorry: {},
@@ -144,6 +156,35 @@ const MachineApp = () => (
             <button onClick={() =>
               props.transition("PASS", {off: "globalEligibilityRules"})
             }>No, none of these</button>
+          </div>
+        )}
+      />
+      <State
+        on="faithBased"
+        render={props => (
+          <div>
+            <p>Is yours a faith-based organisation?</p>
+            <button onClick={() =>
+              props.transition("YES", {off: "faithBased"})
+            }>Yes</button>
+            <button onClick={() =>
+              props.transition("NO", {off: "faithBased"})
+            }>No</button>
+          </div>
+        )}
+      />
+      <State
+        on="diversityPolicy"
+        render={props => (
+          <div>
+            <p>That's cool, but we need to see your diversity policy to check everyone's included.</p>
+            <p>Got one?</p>
+            <button onClick={() =>
+              props.transition("YES", {off: "diversityPolicy"})
+            }>Yes</button>
+            <button onClick={() =>
+              props.transition("NO", {off: "diversityPolicy"})
+            }>No</button>
           </div>
         )}
       />
