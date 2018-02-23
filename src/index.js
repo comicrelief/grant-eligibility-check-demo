@@ -280,7 +280,17 @@ const MachineApp = () => (
       <State
         on="sorry"
         render={() => (
-          <p>Sorry, you don't meet our requirements to apply right now.</p>
+          <main style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Header />
+            <SubHeader />
+            <p>
+              We are really sorry, you don't meet our requirements to apply right now.
+            </p>
+          </main>
         )}
       />
       <FinalState />
