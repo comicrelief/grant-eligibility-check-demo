@@ -180,7 +180,7 @@ const MachineApp = () => (
                 }
               }}
             >Proceed</button>
-          </div>
+          </main>
         )}
       />
       <State
