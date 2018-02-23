@@ -1,0 +1,81 @@
+{
+  "initiatives": [
+    {
+      "name": "Tech for Good",
+      "project_funding_min": {
+        "currency": "GBP",
+        "amount": 1000
+      },
+      "project_funding_max": {
+        "currency": "GBP",
+        "amount": 5000
+      },
+      "eligible_organisation_countries": ["GB"],
+      "common_mistakes": [
+        {
+          "summary": "Users saying they want it isn't everything",
+          "more_info_url": "http://techforgoodhub.co.uk/funding-dont-apply-tech-for-good"
+        },
+        {
+          "summary": "Using new tech for the sake of it"
+        },
+        {
+          "summary": "Doing too much at once"
+        }
+      ],
+      "good_stuff": [
+        {
+          "summary": "Leverage solid market researcg",
+          "more_info_url": "http://techforgoodhub.co.uk/funding-dont-apply-tech-for-good"
+        },
+        {
+          "summary": "Do a pilot",
+          "more_info_text": "You don't need to spend millions - do it on a napkin! Just get real feedback."
+        }
+      ],
+      "past_acceptances": [
+        {
+          "year": 2017,
+          "accepted_percent": 18.0,
+          "accepted_number": 22
+        }
+      ]
+    },
+    {
+      "name": "A.N. Other Initiative",
+      "project_funding_min": {
+        "currency": "GBP",
+        "amount": 100
+      },
+      "project_funding_max": {
+        "currency": "GBP",
+        "amount": 999
+      },
+      "eligible_organisation_countries": ["GB", "Italy"],
+      "common_mistakes": [
+        {
+          "summary": "Being a billionaire",
+          "more_info_url": "https://x.company/loon/"
+        },
+        {
+          "summary": "Being super corrupt"
+        }
+      ],
+      "good_stuff": [
+        {
+          "summary": "Have a coherent plan"
+        },
+        {
+          "summary": "Make a budget"
+        }
+      ],
+      "past_acceptances": [
+        {
+          "year": 2017,
+          "accepted_percent": 1.1,
+          "accepted_number": 6
+        }
+      ]
+    }
+  ]
+}
