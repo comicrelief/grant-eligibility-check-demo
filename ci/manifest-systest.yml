@@ -1,0 +1,11 @@
+---
+buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+instances: 1
+memory: 1G
+disk_quota: 2G
+domain: apps.comicrelief.com
+applications:
+  - name: team1-grants
+    command: yarn start
+    hosts:
+      - team1-grants

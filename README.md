@@ -1,3 +1,12 @@
+## Deploy to PWS
+
+No CI yet!
+
+* Auth & select `systest` space
+* `cf push -f ci/manifest-systest.yml team1-grants`
+
+## Original readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
