@@ -20,9 +20,9 @@ const FinalState = () => (
                     alignItems: 'center',
                     }}
                 >
-                <h1>We think you are eligable</h1>
+                <h1>We think you are eligible</h1>
                     <p>
-                        We think you might be eligable for a grant from Comic Relief.
+                        We think you might be eligible for a grant from Comic Relief.
                     </p>
                     <select
                         defaultValue="-1"
